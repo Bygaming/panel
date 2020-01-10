@@ -36,37 +36,9 @@ class OrderController extends AdminBaseController
         return view('blog.admin.order.index', compact('countOrders', 'paginator'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,7 +60,6 @@ class OrderController extends AdminBaseController
        }
 
        $order_products = $this->orderRepository->getAllOrderProductsId($item->id);
-
        \MetaTag::setTags(['title' => "Заказ № {$item->id}"]);
         return view('blog.admin.order.edit', compact('item', 'order', 'order_products'));
     }
@@ -104,7 +75,7 @@ class OrderController extends AdminBaseController
         if($result) {
             return redirect()
                 ->route('blog.admin.orders.edit', $id)
-                ->with(['succes' => 'Успешно сохранено']);
+                ->with(['success' => 'Успешно сохранено']);
         }else {
             return back()
                 ->withErrors(['mag' => "Ошибка сохранения"]);
@@ -113,6 +84,37 @@ class OrderController extends AdminBaseController
     }
 
 
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $st  = $this->orderRepository->changeStatusOnDelete($id);
+        if($st) {
+            $result = Order::destroy($id);
+            if($result) {
+                return redirect()
+                    ->route('blog.admin.orders.index')
+                    ->with(['success' => "Запись id [$id] удалена"]);
+            } else {
+                return back()->withErrors(['mag' => 'Ошибка удаления']);
+            }
+        } else {
+            return back()->withErrors(['mag' => 'Статус не изменился']);
+        }
+    }
+
+
+
+
+    public function save($id)
+    {
+
+    }
 
 
 
@@ -129,13 +131,36 @@ class OrderController extends AdminBaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function show($id)
     {
         //
     }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
 }

@@ -127,7 +127,7 @@
         </div>
         <h1>INTERCOM</h1>
         <div class="links">
-
+            <a href="{{asset('blog.admin.index.index')}}">API</a>
         </div>
     </div>
 </div>

@@ -116,6 +116,18 @@
 
 
                 <li class="treeview">
+                    <a href="#"><i class="fa fa-address-card"></i> <span>API</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="">Список API</a></li>
+                        <li><a href="">Добавить API</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
                     <a href="#"><i class="fa fa-navicon"></i> <span>Категории</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -229,6 +241,8 @@
 
 <!-- AdminLTE App -->
 <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
+
+<script src="{{asset('js/my.js')}}"></script>
 
 <!-- === = ===  -->
 

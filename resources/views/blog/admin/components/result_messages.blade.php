@@ -8,7 +8,7 @@
                 </button>
                 {{-- {{  $errors->first() }}--}}
                 <ul>
-                    @foreach($errors->all() as $eror)
+                    @foreach($errors->all() as $error)
                         <li>{{$error}}</li>
                     @endforeach
                 </ul>

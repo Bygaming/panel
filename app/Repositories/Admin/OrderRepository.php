@@ -82,4 +82,15 @@ class OrderRepository extends CoreRepository
         return $result;
         }
 
+
+        public function changeStatusOnDelete($id) {
+            $item = $this->getId($id);
+            if(!$item) {
+                abort( 404);
+            }
+            $item->status = '2';
+            $result = $item->update();
+            return $result;
+        }
+
 }

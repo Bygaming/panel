@@ -16,7 +16,7 @@
             @endif
 
             <a class="btn btn-xs" href="">
-                <form id="delform" method="post" action=""
+                <form id="delform" method="post" action="{{route('blog.admin.orders.destroy', $item->id)}}"
                       style="float: none">
                     @method('DELETE')
                     @csrf
